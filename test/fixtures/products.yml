@@ -1,7 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+shoes:
   name: Shoes
+  inventory_count: 15
 
-two:
+pants:
   name: Pants
+  inventory_count: 150
+
