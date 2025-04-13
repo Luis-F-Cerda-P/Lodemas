@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_040127) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_13_043132) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,6 +49,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_040127) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "meli_accounts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "mercadolibre_identifier"
+    t.string "nickname"
+    t.string "site_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meli_accounts_on_user_id"
+  end
+
+  create_table "meli_auth_tokens", force: :cascade do |t|
+    t.integer "meli_account_id", null: false
+    t.string "access_token"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meli_account_id"], name: "index_meli_auth_tokens_on_meli_account_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -83,6 +103,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_040127) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "meli_accounts", "users"
+  add_foreign_key "meli_auth_tokens", "meli_accounts"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "products"
 end

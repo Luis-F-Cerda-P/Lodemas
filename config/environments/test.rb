@@ -50,4 +50,7 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # You can get Rails fixtures encrypted automatically by adding this option to your test.rb:
+  config.active_record.encryption.encrypt_fixtures = true
 end
