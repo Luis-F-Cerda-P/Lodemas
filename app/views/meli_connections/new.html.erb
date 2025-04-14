@@ -1,0 +1,74 @@
+<%# app/views/meli_connections/new.html.erb %>
+
+<%# --- credentials --- %>
+<% app_id = Rails.application.credentials.dig(:meli, :app_id) %>
+<% redirect_uri = Rails.application.credentials.dig(:meli, :redirect_uri) %>
+<% base_params = {
+  app_id: app_id,
+  redirect_uri: redirect_uri,
+  response_type: "code",
+} %>
+
+<%# --- Country list --- %>
+<% countries = [
+  { id: "MLM", name: "Mexico",       domain: "com.mx", iso_code: "MX" },
+  { id: "MCR", name: "Costa Rica",   domain: "com.cr", iso_code: "CR" },
+  { id: "MHN", name: "Honduras",     domain: "com.hn", iso_code: "HN" },
+  { id: "MPA", name: "Panamá",       domain: "com.pa", iso_code: "PA" },
+  { id: "MLA", name: "Argentina",    domain: "com.ar", iso_code: "AR" },
+  { id: "MLB", name: "Brasil",       domain: "com.br", iso_code: "BR" },
+  { id: "MEC", name: "Ecuador",      domain: "com.ec", iso_code: "EC" },
+  { id: "MPY", name: "Paraguay",     domain: "com.py", iso_code: "PY" },
+  { id: "MGT", name: "Guatemala",    domain: "com.gt", iso_code: "GT" },
+  { id: "MLU", name: "Uruguay",      domain: "com.uy", iso_code: "UY" },
+  { id: "MCO", name: "Colombia",     domain: "com.co", iso_code: "CO" },
+  { id: "MBO", name: "Bolivia",      domain: "com.bo", iso_code: "BO" },
+  { id: "MLC", name: "Chile",        domain: "cl",     iso_code: "CL" },
+  { id: "MLV", name: "Venezuela",    domain: "com.ve", iso_code: "VE" },
+  { id: "MRD", name: "Dominicana",   domain: "com.do", iso_code: "DO" },
+  { id: "MNI", name: "Nicaragua",    domain: "com.ni", iso_code: "NI" },
+  { id: "MSV", name: "El Salvador",  domain: "com.sv", iso_code: "SV" },
+  { id: "MPE", name: "Perú",         domain: "com.pe", iso_code: "PE" },
+] %>
+
+<%# --- Emoji flag helper --- %>
+<% def emoji_flag(iso_code)
+     iso_code.upcase.each_char.map { |c| (0x1F1E6 - 'A'.ord + c.ord).chr(Encoding::UTF_8) }.join
+   end %>
+
+<%# --- Stimulus Controller + HTML --- %>
+<div data-controller="meli-auth">
+  <h2>Selecciona tu país:</h2>
+
+  <select
+    id="country_select"
+    data-meli-auth-target="select"
+    data-client-id="<%= base_params[:app_id] %>"
+    data-redirect-uri="<%= base_params[:redirect_uri] %>"
+    data-response-type="<%= base_params[:response_type] %>"
+  >
+    <option value="">Selecciona un país</option>
+    <% countries.each do |country| %>
+      <option value="<%= country[:domain] %>">
+        <%= emoji_flag(country[:iso_code]) %> <%= country[:name] %>
+      </option>
+    <% end %>
+  </select>
+
+  <br><br>
+
+  <p data-meli-auth-target="message" class="auth-message" style="display: none;">
+    Serás redirigido a MercadoLibre para autorizar la aplicación. Luego volverás automáticamente.
+  </p>
+
+  <a
+    id="auth_link"
+    data-meli-auth-target="link"
+    href="#"
+    style="display: none;"
+    target="_blank"
+    class="auth-button"
+  >
+    Autorizar aplicación
+  </a>
+</div>

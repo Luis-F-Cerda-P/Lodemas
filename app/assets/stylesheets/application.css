@@ -13,6 +13,38 @@ body {
   padding: 1rem;
 }
 
+select, option {
+  font-family: 'Noto Color Emoji', system-ui, sans-serif;
+}
+
+.auth-button {
+  padding: 10px 16px;
+  background-color: #3483fa;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #2968c8;
+}
+
+.auth-message {
+  font-size: 0.95em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 nav {
   justify-content: flex-end;
   display: flex;
