@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get "meli_connections/new"
   get "meli_connections/authorize"
-  delete "meli_connections/destroy"
+  delete "meli_connections/:id", to: "meli_connections#destroy", as: "destroy_meli_connection"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

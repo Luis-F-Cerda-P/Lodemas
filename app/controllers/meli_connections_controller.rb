@@ -8,11 +8,11 @@ class MeliConnectionsController < ApplicationController
       current_user: Current.user
     ).call
 
-    if result.success
-      redirect_to root_path, notice: "¡Conexión exitosa con MercadoLibre!"
-    else
-      redirect_to meli_connections_new_path, notice: result.error
-    end
+    # if result.success
+    #   redirect_to root_path, notice: "¡Conexión exitosa con MercadoLibre!"
+    # else
+    #   redirect_to meli_connections_new_path, notice: result.error
+    # end
   end
 
   def destroy
