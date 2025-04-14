@@ -20,7 +20,7 @@ servers:
 proxy:
   ssl: true
   hosts: 
-   - inventario.luis-f-cerda-p.dev
+   - lodemas.luis-f-cerda-p.dev
 
 # Credentials for your image host.
 registry:
