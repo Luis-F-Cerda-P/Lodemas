@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Store" %></title>
+    <title><%= content_for(:title) || "Lo Demás" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -24,16 +24,42 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="h-full bg-gray-100">
     <div class="notice"><%= notice %></div>
-    <nav>
-      <%= link_to "Home", root_path %>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-      <%= link_to "Login", new_session_path unless authenticated? %>
-    </nav>
+    <div class="min-h-full">
+      <nav class="bg-gray-200 shadow-sm">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex h-16 justify-between">
+            <div class="flex">
+              <div class="flex flex-shrink-0 items-center">
+                <img class="block h-8 w-auto lg:hidden" src="/icon.svg" alt="Your Company">
+                <img class="hidden h-8 w-auto lg:block" src="/icon.svg" alt="Your Company">
+              </div>
+              <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                <%= link_to "Productos", products_path, class: "inline-flex items-center border-b-2 border-teal-900 px-1 pt-1 text-sm font-medium" %>
+              </div>
+              <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                <%= link_to "Mercadolibre", meli_connections_new_path, class: "inline-flex items-center border-b-2 border-teal-900 px-1 pt-1 text-sm font-medium" %>
+              </div>
+            </div>
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+              <% if Current.user %>
+                <%= button_to "Logout", session_path, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-teal-300 font-medium hover:bg-teal-400" %>
+              <% else %>
+                <%= button_to "Login", new_session_path, class: "mt-2 rounded-lg py-3 px-5 bg-teal-500 font-medium hover:bg-teal-400" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-    <main>
-      <%= yield %>
-    </main>
+      <div class="py-10 px-4">
+        <main>
+          <div class="mx-auto max-w-7xl">
+            <%= yield %>
+          </div>
+        </main>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,3 +1,84 @@
-<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="256" cy="256" r="256" fill="red"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 24 24"
+   fill="none"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="icon.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.449375"
+     inkscape:cx="697.6356"
+     inkscape:cy="455.07649"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" />
+  <path
+     d="M 23.269819,12 C 23.269819,18.224196 18.224196,23.269819 12,23.269819 5.7758542,23.269819 0.73018081,18.224196 0.73018081,12 0.73018081,5.7758542 5.7758542,0.73018081 12,0.73018081 18.224196,0.73018081 23.269819,5.7758542 23.269819,12 Z"
+     stroke="#323232"
+     stroke-width="2.5044"
+     id="path6826"
+     style="fill:#ffffff;stroke:none"
+     inkscape:export-filename="C:\Users\luisc\Downloads\icon.png"
+     inkscape:export-xdpi="203.036"
+     inkscape:export-ydpi="203.036" />
+  <path
+     d="M 16,8 8,16"
+     stroke="#323232"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="path2"
+     inkscape:export-filename="C:\Users\luisc\Downloads\icon.png"
+     inkscape:export-xdpi="203.036"
+     inkscape:export-ydpi="203.036" />
+  <path
+     d="m 9,9.01001 v -0.01"
+     stroke="#323232"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="path4"
+     inkscape:export-filename="C:\Users\luisc\Downloads\icon.png"
+     inkscape:export-xdpi="203.036"
+     inkscape:export-ydpi="203.036" />
+  <path
+     d="M 15,15.01 V 15"
+     stroke="#323232"
+     stroke-width="2"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="path6"
+     inkscape:export-filename="C:\Users\luisc\Downloads\icon.png"
+     inkscape:export-xdpi="203.036"
+     inkscape:export-ydpi="203.036" />
+  <path
+     d="m 21,12 c 0,4.9706 -4.0294,9 -9,9 -4.97056,0 -9,-4.0294 -9,-9 0,-4.97056 4.02944,-9 9,-9 4.9706,0 9,4.02944 9,9 z"
+     stroke="#323232"
+     stroke-width="2"
+     id="path8"
+     inkscape:export-filename="C:\Users\luisc\Downloads\icon.png"
+     inkscape:export-xdpi="203.036"
+     inkscape:export-ydpi="203.036" />
 </svg>
