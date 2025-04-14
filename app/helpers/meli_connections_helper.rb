@@ -1,0 +1,2 @@
+module MeliConnectionsHelper
+end
