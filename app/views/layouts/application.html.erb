@@ -26,33 +26,112 @@
   </head>
 
   <body class="h-full bg-gray-100">
+
     <div class="notice"><%= notice %></div>
-    <div class="min-h-full">
-      <nav class="bg-gray-200 shadow-sm">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="flex h-16 justify-between">
-            <div class="flex">
-              <div class="flex flex-shrink-0 items-center">
-                <img class="block h-8 w-auto lg:hidden" src="/icon.svg" alt="Your Company">
-                <img class="hidden h-8 w-auto lg:block" src="/icon.svg" alt="Your Company">
-              </div>
-              <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                <%= link_to "Productos", products_path, class: "inline-flex items-center border-b-2 border-teal-900 px-1 pt-1 text-sm font-medium" %>
-              </div>
-              <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                <%= link_to "Mercadolibre", meli_connections_new_path, class: "inline-flex items-center border-b-2 border-teal-900 px-1 pt-1 text-sm font-medium" %>
-              </div>
+
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/icon.svg" class="h-8" alt="Lodemás Logo" />
+                <span class="self-center text-md md:text-lg font-semibold whitespace-nowrap dark:text-white">Lodemás</span>
+            </a>
+            <div class="flex items-center md:order-2 ">
+                <% if !Current.user %>
+                  <%= link_to "Ingresar", new_session_path, class: "py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-gray-100 rounded-s-lg border border-gray-200 hover:bg-gray-200 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+                  <%= link_to "Registrar", new_session_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-e-lg text-sm px-3 md:px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+                <% else %>
+                  <div class="hidden md:block py-1 px-2 ">
+                    <%= button_to "Cerrar Sesión", session_path, method: :delete, class: "text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium   rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800" %>
+                  </div>
+                <% end %>
+                <button data-collapse-toggle="mega-menu" type="button" class="inline-flex items-center ms-2 p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mega-menu" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
             </div>
-            <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-              <% if Current.user %>
-                <%= button_to "Logout", session_path, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-teal-300 font-medium hover:bg-teal-400" %>
-              <% else %>
-                <%= button_to "Login", new_session_path, class: "mt-2 rounded-lg py-3 px-5 bg-teal-500 font-medium hover:bg-teal-400" %>
-              <% end %>
+            <div id="mega-menu" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
+                <ul class="flex flex-col font-medium md:flex-row md:space-x-6 rtl:space-x-reverse md:items-center">
+                    <li>
+                        <a href="/" class="block py-2 px-3 text-blue-600 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <button id="mega-menu-dropdown-button" data-dropdown-toggle="mega-menu-dropdown" class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                            Canales de venta <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                                    </svg>
+                        </button>
+                        <div id="mega-menu-dropdown" class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md dark:border-gray-700 md:grid-cols-3 dark:bg-gray-700">
+                            <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                                <ul class="space-y-4" aria-labelledby="mega-menu-dropdown-button">
+                                    <li>
+                                        <%= link_to "Mercadolibre", meli_connections_new_path, class: "text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500" %>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                                            Falabella
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                                            Ripley
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                                            Facebook 
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                                <ul class="space-y-4">
+                                    <li>
+                                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                                            WhatsApp
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                                            Instagram
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                                            Tienda propia
+                                        </a>
+                                    </li>
+                                    <li>
+    
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="p-4">
+                                <ul class="space-y-4">
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <%= link_to "Products", products_path, class: "block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700" %>
+                    </li>
+                    <li class="md:order-last">
+                        <a href="#" class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                    </li>
+                </ul>
+                    <% if Current.user %>
+                        <div class="md:hidden py-1 px-2">
+                          <%= button_to "Cerrar Sesión", session_path, method: :delete, class: "text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium   rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800" %>
+                        </div>
+                    <% end %>
             </div>
-          </div>
         </div>
-      </nav>
+    </nav>
+
+
+    <div class="min-h-full">
+      
 
       <div class="py-10 px-4">
         <main>
