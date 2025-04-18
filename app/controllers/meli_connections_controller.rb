@@ -20,6 +20,6 @@ class MeliConnectionsController < ApplicationController
 
   private
   def product_params
-    params.expect(product: [ :name, :description, :featured_image, :inventory_count ])
+    params.expect(:code)
   end
 end
