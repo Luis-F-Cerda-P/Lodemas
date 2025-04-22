@@ -65,3 +65,5 @@ end
 gem "tailwindcss-rails", "~> 4.2"
 
 gem "tailwindcss-ruby", "~> 4.1"
+
+gem "mission_control-jobs"
