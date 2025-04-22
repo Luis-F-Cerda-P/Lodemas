@@ -3,16 +3,14 @@ class MeliConnectionsController < ApplicationController
   end
 
   def authorize
-    result = MeliAuthorizationService.new(
+    MeliAuthorizationService.new(
       code: params[:code],
       current_user: Current.user
     ).call
 
-    # if result.success
-    #   redirect_to root_path, notice: "¡Conexión exitosa con MercadoLibre!"
-    # else
-    #   redirect_to meli_connections_new_path, notice: result.error
-    # end
+    MeliAuthTokenRenewalJob.set(wait: 5.hours).perform_later(Current.user)
+
+    redirect_to root_path
   end
 
   def destroy

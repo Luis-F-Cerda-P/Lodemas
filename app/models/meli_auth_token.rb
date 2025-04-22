@@ -24,18 +24,25 @@ class MeliAuthToken < ApplicationRecord
 
     request.body = URI.encode_www_form(params)
 
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
     begin
       response = http.request(request)
       if response.is_a?(Net::HTTPSuccess)
         data = JSON.parse(response.body)
         update(
           access_token: data["access_token"],
-          expires_in: data["expires_in"],
+          expires_at: Time.current + (data["expires_in"] - 1800).seconds,
           refresh_token: data["refresh_token"]
-          )
+        )
       else
-          nil
+        Rails.logger.error "Token refresh failed: #{response.body}"
+        nil
       end
+    rescue => e
+      Rails.logger.error "Exception during token refresh: #{e.message}"
+      nil
     end
   end
 end
