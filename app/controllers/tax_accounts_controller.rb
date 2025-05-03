@@ -9,7 +9,7 @@ class TaxAccountsController < ApplicationController
     if @tax_account.save
       redirect_to root_path, notice: "Tax account added successfully."
     else
-      render :new, status: :unprocessable_entityñ
+      render :new, status: :unprocessable_entity
     end
   end
 
