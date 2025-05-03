@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_13_043132) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_02_045339) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -93,6 +93,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_13_043132) do
     t.index ["product_id"], name: "index_subscribers_on_product_id"
   end
 
+  create_table "tax_accounts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "rut"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tax_accounts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "password_digest", null: false
@@ -107,4 +116,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_13_043132) do
   add_foreign_key "meli_auth_tokens", "meli_accounts"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "products"
+  add_foreign_key "tax_accounts", "users"
 end

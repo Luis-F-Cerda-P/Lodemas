@@ -1,0 +1,28 @@
+<h1>Add Tax Credentials</h1>
+
+<%= form_with model: @tax_account, local: true do |form| %>
+  <% if @tax_account.errors.any? %>
+    <div class="errors">
+      <h2><%= pluralize(@tax_account.errors.count, "error") %> prohibited this account from being saved:</h2>
+      <ul>
+        <% @tax_account.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :rut %>
+    <%= form.text_field :rut, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :password, "Tax Portal Password" %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Save Tax Credentials" %>
+  </div>
+<% end %>
