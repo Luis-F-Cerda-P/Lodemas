@@ -3,8 +3,10 @@
 shoes:
   name: Shoes
   inventory_count: 15
+  user: one
 
 pants:
   name: Pants
   inventory_count: 150
+  user: two
 

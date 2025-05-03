@@ -4,7 +4,7 @@
 
 <div id="products">
   <% @products.each do |product| %>
-    <div>
+    <div id="product_<%= product.id %>">
       <%= link_to product.name, product %>
     </div>
   <% end %>
