@@ -19,8 +19,8 @@
               <td class="px-4 py-2 text-sm text-gray-800"><%= notification.topic %></td>
               <td class="px-4 py-2 text-sm text-blue-600 break-all"><%= notification.resource %></td>
               <td class="px-4 py-2 text-sm text-gray-800"><%= notification.attempts %></td>
-              <td class="px-4 py-2 text-sm text-gray-600"><%= notification.sent.to_s(:db) %></td>
-              <td class="px-4 py-2 text-sm text-gray-600"><%= notification.received.to_s(:db) %></td>
+              <td class="px-4 py-2 text-sm text-gray-600"><%= notification.sent.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %></td>
+              <td class="px-4 py-2 text-sm text-gray-600"><%= notification.received.in_time_zone.strftime('%Y-%m-%d %H:%M:%S') %></td>
             </tr>
           <% end %>
         </tbody>
