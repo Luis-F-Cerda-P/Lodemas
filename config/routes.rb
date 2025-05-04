@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api do
+    resources :meli_notifications, only: [ :create ]
+  end
+
   resource :session
   resource :registration, only: %i[ new create ]
   resources :passwords, param: :token
