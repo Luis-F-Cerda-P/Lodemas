@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :tax_accounts, only: %i[ new create ]
 
+  resources :meli_notifications, only: [ :index ]
+
   resource :unsubscribe, only: [ :show ]
 
   get "meli_connections/new"

@@ -1,0 +1,32 @@
+<div class="max-w-4xl mx-auto mt-10">
+  <h1 class="text-2xl font-bold mb-6">Recent MercadoLibre Notifications</h1>
+
+  <% if @meli_notifications.any? %>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white shadow rounded-lg">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Topic</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Resource</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Attempts</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Sent</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Received</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <% @meli_notifications.each do |notification| %>
+            <tr>
+              <td class="px-4 py-2 text-sm text-gray-800"><%= notification.topic %></td>
+              <td class="px-4 py-2 text-sm text-blue-600 break-all"><%= notification.resource %></td>
+              <td class="px-4 py-2 text-sm text-gray-800"><%= notification.attempts %></td>
+              <td class="px-4 py-2 text-sm text-gray-600"><%= notification.sent.to_s(:db) %></td>
+              <td class="px-4 py-2 text-sm text-gray-600"><%= notification.received.to_s(:db) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-gray-600">No notifications received yet.</p>
+  <% end %>
+</div>
