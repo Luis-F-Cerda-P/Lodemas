@@ -15,7 +15,7 @@ class Api::MeliNotificationsController < ActionController::Metal
       return
     end
 
-    # MeliNotificationJob.perform_later(request.raw_post)
+    ProcessMeliNotificationJob.perform_later(request.raw_post)
     self.status = 200
     self.content_type = "text/plain"
     self.response_body = "OK"
