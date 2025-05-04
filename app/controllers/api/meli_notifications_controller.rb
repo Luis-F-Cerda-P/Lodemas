@@ -1,5 +1,5 @@
 class Api::MeliNotificationsController < ActionController::Metal
-    ALLOWED_IPS = %w[
+  ALLOWED_IPS = %w[
     54.88.218.97
     18.215.140.160
     18.213.114.129
