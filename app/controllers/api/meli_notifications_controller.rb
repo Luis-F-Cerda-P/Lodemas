@@ -1,8 +1,7 @@
-class Api::MeliNotificationsController < ApplicationController
-  allow_unauthenticated_access
-  skip_before_action :verify_authenticity_token
-
+class Api::MeliNotificationsController < ActionController::Metal
   def create
-    head :ok
+    # MeliNotificationJob.perform_later(request.raw_post)
+    self.status = 200
+    self.response_body= request.remote_ip
   end
 end

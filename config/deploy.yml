@@ -21,6 +21,10 @@ proxy:
   ssl: true
   hosts: 
    - lodemas.luis-f-cerda-p.dev
+  forward_headers: true
+  logging:
+    request_headers:
+      - X-Forwarded-For
 
 # Credentials for your image host.
 registry:
