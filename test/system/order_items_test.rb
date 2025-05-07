@@ -3,6 +3,11 @@ require "application_system_test_case"
 class OrderItemsTest < ApplicationSystemTestCase
   setup do
     @order_item = order_items(:one)
+    @user = User.create(email_address: "real_user@real.com", password: "realMEANSreal")
+    visit new_session_url
+    find("#email_address").set(@user.email_address)
+    find("#password").set(@user.password)
+    click_button "Ingresar"
   end
 
   test "visiting the index" do

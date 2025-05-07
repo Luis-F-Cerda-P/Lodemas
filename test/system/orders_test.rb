@@ -3,6 +3,11 @@ require "application_system_test_case"
 class OrdersTest < ApplicationSystemTestCase
   setup do
     @order = orders(:one)
+    @user = User.create(email_address: "real_user@real.com", password: "realMEANSreal")
+    visit new_session_url
+    find("#email_address").set(@user.email_address)
+    find("#password").set(@user.password)
+    click_button "Ingresar"
   end
 
   test "visiting the index" do
@@ -14,7 +19,7 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "New order"
 
-    fill_in "Channel", with: @order.source_channel
+    fill_in "Source channel", with: @order.source_channel
     fill_in "Human readable", with: @order.human_readable_id
     fill_in "Pack", with: @order.pack_id
     fill_in "Sale channel", with: @order.sale_channel_id
@@ -30,7 +35,7 @@ class OrdersTest < ApplicationSystemTestCase
     visit order_url(@order)
     click_on "Edit this order", match: :first
 
-    fill_in "Channel", with: @order.source_channel
+    fill_in "Source channel", with: @order.source_channel
     fill_in "Human readable", with: @order.human_readable_id
     fill_in "Pack", with: @order.pack_id
     fill_in "Sale channel", with: @order.sale_channel_id
