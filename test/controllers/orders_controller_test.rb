@@ -3,6 +3,8 @@ require "test_helper"
 class OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @order = orders(:one)
+    @user = User.create(email_address: "real_user@real.com", password: "realMEANSreal")
+    post session_url, params: { email_address: @user.email_address, password: @user.password }
   end
 
   test "should get index" do
