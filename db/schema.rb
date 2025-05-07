@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_04_023238) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_05_173633) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -83,6 +83,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_04_023238) do
     t.index ["user_id"], name: "index_meli_notifications_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "pack_id"
+    t.integer "sale_channel_id"
+    t.string "human_readable_id"
+    t.integer "source_channel", default: 0
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -131,6 +143,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_04_023238) do
   add_foreign_key "meli_accounts", "users"
   add_foreign_key "meli_auth_tokens", "meli_accounts"
   add_foreign_key "meli_notifications", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "products"

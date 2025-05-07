@@ -1,0 +1,26 @@
+<div id="<%= dom_id order %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= order.user_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Pack:</strong>
+    <%= order.pack_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Sale channel:</strong>
+    <%= order.sale_channel_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Human readable:</strong>
+    <%= order.human_readable_id %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Channel:</strong>
+    <%= order.source_channel %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= order.status %>
+  </div>
+</div>

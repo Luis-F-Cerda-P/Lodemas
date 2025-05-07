@@ -1,0 +1,47 @@
+<%= form_with(model: order, class: "contents") do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:user_id].none?, "border-red-400 focus:outline-red-600": order.errors[:user_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :pack_id %>
+    <%= form.number_field :pack_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:pack_id].none?, "border-red-400 focus:outline-red-600": order.errors[:pack_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :sale_channel_id %>
+    <%= form.number_field :sale_channel_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:sale_channel_id].none?, "border-red-400 focus:outline-red-600": order.errors[:sale_channel_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :human_readable_id %>
+    <%= form.text_field :human_readable_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:human_readable_id].none?, "border-red-400 focus:outline-red-600": order.errors[:human_readable_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :source_channel %>
+    <%= form.number_field :source_channel, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:source_channel].none?, "border-red-400 focus:outline-red-600": order.errors[:source_channel].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :status %>
+    <%= form.text_field :status, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": order.errors[:status].none?, "border-red-400 focus:outline-red-600": order.errors[:status].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
