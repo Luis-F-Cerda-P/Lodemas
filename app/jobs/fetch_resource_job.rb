@@ -10,7 +10,7 @@ class FetchResourceJob < ApplicationJob
     resource_json = client.get(notification.resource)
 
     # Store raw JSON — for auditing or debugging
-    if notification.topic == "orders"
+    if notification.topic == "orders_v2"
       ProcessOrderJob.perform_later(resource_json.to_json, account.user_id)
     end
   end
