@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shipments
   resources :order_items
   resources :orders
   namespace :api do
