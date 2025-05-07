@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :order_items
   resources :orders
   namespace :api do
     resources :meli_notifications, only: [ :create ]

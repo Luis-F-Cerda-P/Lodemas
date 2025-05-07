@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_05_173633) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_06_042526) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -83,6 +83,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_05_173633) do
     t.index ["user_id"], name: "index_meli_notifications_on_user_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.string "item_id"
+    t.string "seller_sku"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "pack_id"
@@ -143,6 +153,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_05_173633) do
   add_foreign_key "meli_accounts", "users"
   add_foreign_key "meli_auth_tokens", "meli_accounts"
   add_foreign_key "meli_notifications", "users"
+  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
   add_foreign_key "sessions", "users"
