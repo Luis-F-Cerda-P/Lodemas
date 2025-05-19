@@ -19,6 +19,7 @@ class OrderItemsTest < ApplicationSystemTestCase
     visit order_items_url
     click_on "New order item"
 
+    fill_in "Sale channel", with: @order_item.sale_channel_id
     fill_in "Item", with: @order_item.item_id
     fill_in "Order", with: @order_item.order_id
     fill_in "Quantity", with: @order_item.quantity
@@ -33,6 +34,7 @@ class OrderItemsTest < ApplicationSystemTestCase
     visit order_item_url(@order_item)
     click_on "Edit this order item", match: :first
 
+    fill_in "Sale channel", with: @order_item.sale_channel_id
     fill_in "Item", with: @order_item.item_id
     fill_in "Order", with: @order_item.order_id
     fill_in "Quantity", with: @order_item.quantity
