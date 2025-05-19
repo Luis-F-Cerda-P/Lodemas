@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_06_042541) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_10_181327) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -90,18 +90,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_06_042541) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sale_channel_id"
+    t.integer "billable_amount"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "pack_id"
-    t.integer "sale_channel_id"
     t.string "human_readable_id"
     t.integer "source_channel", default: 0
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "billable_amount"
+    t.integer "expected_item_count"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -128,6 +131,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_06_042541) do
     t.integer "meli_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "logistic_type"
+    t.integer "billable_amount"
+    t.string "destination"
+    t.datetime "delivery_deadline"
     t.index ["order_id"], name: "index_shipments_on_order_id"
   end
 
