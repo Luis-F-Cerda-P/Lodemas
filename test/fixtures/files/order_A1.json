@@ -1,0 +1,149 @@
+{
+  "id": 2000011603979206,
+  "date_created": "2025-05-13T23:33:39.000-04:00",
+  "last_updated": "2025-05-14T12:08:07.000-04:00",
+  "date_closed": "2025-05-13T23:33:42.000-04:00",
+  "pack_id": 2000007872406609,
+  "fulfilled": null,
+  "buying_mode": "buy_equals_pay",
+  "shipping_cost": null,
+  "mediations": [],
+  "total_amount": 13990.00,
+  "paid_amount": 13990.00,
+  "order_items": [
+    {
+      "item": {
+        "id": "MLC1447516919",
+        "title": "Pelota Clásica Caucho Agujero Med/grande Rojo Perro Kong",
+        "category_id": "MLC179483",
+        "variation_id": null,
+        "seller_custom_field": null,
+        "variation_attributes": [],
+        "warranty": "Garantía del vendedor: 90 días",
+        "condition": "new",
+        "seller_sku": "035585181127",
+        "global_price": null,
+        "net_weight": null,
+        "user_product_id": "MLCU41224522",
+        "release_date": null
+      },
+      "quantity": 1,
+      "requested_quantity": {
+        "measure": "unit",
+        "value": 1
+      },
+      "picked_quantity": null,
+      "unit_price": 13990.00,
+      "full_unit_price": 13990.00,
+      "full_unit_price_currency_id": "CLP",
+      "currency_id": "CLP",
+      "manufacturing_days": null,
+      "sale_fee": 3098.00,
+      "listing_type_id": "gold_special",
+      "base_exchange_rate": null,
+      "base_currency_id": null,
+      "element_id": null,
+      "discounts": null,
+      "bundle": null,
+      "compat_id": null,
+      "stock": {
+        "store_id": null,
+        "node_id": "CLP6805871731"
+      },
+      "kit_instance_id": null
+    }
+  ],
+  "currency_id": "CLP",
+  "payments": [
+    {
+      "id": 111079692893,
+      "order_id": 2000011603979206,
+      "payer_id": 115993662,
+      "collector": {
+        "id": 680587173
+      },
+      "card_id": null,
+      "reason": "Pelota Clásica Caucho Agujero Med/grande Rojo Perro Kong",
+      "site_id": "MLC",
+      "payment_method_id": "account_money",
+      "currency_id": "CLP",
+      "installments": 1,
+      "issuer_id": "2020",
+      "atm_transfer_reference": {
+        "transaction_id": null,
+        "company_id": null
+      },
+      "coupon_id": null,
+      "activation_uri": null,
+      "operation_type": "regular_payment",
+      "payment_type": "account_money",
+      "available_actions": [
+        "refund"
+      ],
+      "status": "approved",
+      "status_code": null,
+      "status_detail": "accredited",
+      "transaction_amount": 13990.00,
+      "transaction_amount_refunded": 0.00,
+      "taxes_amount": 0.00,
+      "shipping_cost": 0.00,
+      "coupon_amount": 0.00,
+      "overpaid_amount": 0.00,
+      "total_paid_amount": 13990.00,
+      "installment_amount": null,
+      "deferred_period": null,
+      "date_approved": "2025-05-13T23:33:41.000-04:00",
+      "transaction_order_id": null,
+      "date_created": "2025-05-13T23:33:41.000-04:00",
+      "date_last_modified": "2025-05-14T12:08:06.000-04:00",
+      "marketplace_fee": 3098.00,
+      "reference_id": null,
+      "authorization_code": null
+    }
+  ],
+  "shipping": {
+    "id": 44861874518
+  },
+  "status": "paid",
+  "status_detail": null,
+  "tags": [
+    "pack_order",
+    "catalog",
+    "paid",
+    "not_delivered"
+  ],
+  "internal_tags": [
+    "invoice_authorized"
+  ],
+  "feedback": {
+    "seller": null,
+    "buyer": null
+  },
+  "context": {
+    "channel": "marketplace",
+    "site": "MLC",
+    "flows": [
+      "catalog"
+    ]
+  },
+  "seller": {
+    "id": 680587173
+  },
+  "buyer": {
+    "id": 115993662,
+    "nickname": "SEBADURAN07",
+    "first_name": "Sebastián",
+    "last_name": "Durán"
+  },
+  "taxes": {
+    "amount": null,
+    "currency_id": null,
+    "id": null
+  },
+  "cancel_detail": null,
+  "manufacturing_ending_date": null,
+  "order_request": {
+    "change": null,
+    "return": null
+  }
+}

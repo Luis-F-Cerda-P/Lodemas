@@ -3,7 +3,6 @@
 one:
   user: one
   pack_id: 1
-  sale_channel_id: 1
   human_readable_id: MyString
   source_channel: 1
   status: MyString
@@ -11,7 +10,27 @@ one:
 two:
   user: two
   pack_id: 1
-  sale_channel_id: 1
   human_readable_id: MyString
   source_channel: 1
   status: MyString
+
+three: 
+  user: one
+  pack_id: 2000007811397085
+  human_readable_id: 2000007811397085
+  source_channel: 0
+  status: 
+
+four: 
+  user: one
+  pack_id: 2000007829661899
+  human_readable_id: 2000007829661899
+  source_channel: 0
+  status: 
+
+shipment_test:
+  user: one
+  pack_id: 2000007913919057
+  human_readable_id: 2000007913919057
+  source_channel: 0
+  status: "live"

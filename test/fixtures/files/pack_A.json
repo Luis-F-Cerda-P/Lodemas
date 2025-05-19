@@ -1,0 +1,23 @@
+{
+  "shipment": {
+    "id": 44861874518
+  },
+  "orders": [
+    {
+      "id": 2000011603979206
+    },
+    {
+      "id": 2000011603975776
+    }
+  ],
+  "id": 2000007872406609,
+  "status": "released",
+  "status_detail": null,
+  "family_pack_id": null,
+  "trash_pack_id": null,
+  "buyer": {
+    "id": 115993662
+  },
+  "date_created": "2025-05-13T23:33:28.000-0400",
+  "last_updated": "2025-05-14T22:34:02.000-0400"
+}

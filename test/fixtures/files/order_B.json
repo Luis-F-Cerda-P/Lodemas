@@ -1,0 +1,145 @@
+{
+  "id": 2000011534571708,
+  "date_created": "2025-05-07T13:05:50.000-04:00",
+  "last_updated": "2025-05-07T21:59:34.000-04:00",
+  "date_closed": "2025-05-07T13:05:52.000-04:00",
+  "pack_id": null,
+  "fulfilled": null,
+  "buying_mode": "buy_equals_pay",
+  "shipping_cost": null,
+  "mediations": [],
+  "total_amount": 8790,
+  "paid_amount": 14580,
+  "order_items": [
+    {
+      "item": {
+        "id": "MLC1447516873",
+        "title": "Juguete Para Perro Con Sonido Kong Air Dog Football Rugby S Color Amarillo Flúor",
+        "category_id": "MLC179483",
+        "variation_id": null,
+        "seller_custom_field": null,
+        "variation_attributes": [],
+        "warranty": "Garantía del vendedor: 90 días",
+        "condition": "new",
+        "seller_sku": "035585775227",
+        "global_price": null,
+        "net_weight": null,
+        "user_product_id": "MLCU34623658",
+        "release_date": null
+      },
+      "quantity": 1,
+      "requested_quantity": {
+        "measure": "unit",
+        "value": 1
+      },
+      "picked_quantity": null,
+      "unit_price": 8790,
+      "full_unit_price": 8790,
+      "full_unit_price_currency_id": "CLP",
+      "currency_id": "CLP",
+      "manufacturing_days": null,
+      "sale_fee": 2018,
+      "listing_type_id": "gold_special",
+      "base_exchange_rate": null,
+      "base_currency_id": null,
+      "element_id": null,
+      "discounts": null,
+      "bundle": null,
+      "compat_id": null,
+      "stock": null,
+      "kit_instance_id": null
+    }
+  ],
+  "currency_id": "CLP",
+  "payments": [
+    {
+      "id": 110727001120,
+      "order_id": 2000011534571708,
+      "payer_id": 836098497,
+      "collector": {
+        "id": 680587173
+      },
+      "card_id": 9529200955,
+      "reason": "Juguete Para Perro Con Sonido Kong Air Dog Football Rugby S Color Amarillo Flúor",
+      "site_id": "MLC",
+      "payment_method_id": "visa",
+      "currency_id": "CLP",
+      "installments": 1,
+      "issuer_id": "12440",
+      "atm_transfer_reference": {
+        "transaction_id": null,
+        "company_id": null
+      },
+      "coupon_id": null,
+      "activation_uri": null,
+      "operation_type": "regular_payment",
+      "payment_type": "credit_card",
+      "available_actions": [
+        "refund"
+      ],
+      "status": "approved",
+      "status_code": null,
+      "status_detail": "accredited",
+      "transaction_amount": 8790,
+      "transaction_amount_refunded": 0,
+      "taxes_amount": 0,
+      "shipping_cost": 5790,
+      "coupon_amount": 0,
+      "overpaid_amount": 0,
+      "total_paid_amount": 14580,
+      "installment_amount": 14580,
+      "deferred_period": null,
+      "date_approved": "2025-05-07T13:05:52.000-04:00",
+      "transaction_order_id": null,
+      "date_created": "2025-05-07T13:05:51.000-04:00",
+      "date_last_modified": "2025-05-07T21:59:33.000-04:00",
+      "marketplace_fee": 2018,
+      "reference_id": null,
+      "authorization_code": "075885"
+    }
+  ],
+  "shipping": {
+    "id": 44830851687
+  },
+  "status": "paid",
+  "status_detail": null,
+  "tags": [
+    "catalog",
+    "paid",
+    "not_delivered"
+  ],
+  "internal_tags": [
+    "invoice_authorized"
+  ],
+  "feedback": {
+    "seller": null,
+    "buyer": null
+  },
+  "context": {
+    "channel": "marketplace",
+    "site": "MLC",
+    "flows": [
+      "catalog"
+    ]
+  },
+  "seller": {
+    "id": 680587173
+  },
+  "buyer": {
+    "id": 836098497,
+    "nickname": "GUSTGUTIERREZP",
+    "first_name": "Gustavo Antonio",
+    "last_name": "Gutiérrez Palacios"
+  },
+  "taxes": {
+    "amount": null,
+    "currency_id": null,
+    "id": null
+  },
+  "cancel_detail": null,
+  "manufacturing_ending_date": null,
+  "order_request": {
+    "change": null,
+    "return": null
+  }
+}
