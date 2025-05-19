@@ -1,0 +1,224 @@
+{
+  "snapshot_packing": {
+    "snapshot_id": "bc62faf8-510b-41d3-8087-06f9cf7be2f0",
+    "pack_hash": "1"
+  },
+  "last_updated": "2025-05-19T13:09:46.191-04:00",
+  "items_types": [
+    "new"
+  ],
+  "substatus": "dropped_off",
+  "date_created": "2025-05-18T15:36:25.639-04:00",
+  "origin": {
+    "node": null,
+    "shipping_address": {
+      "country": {
+        "id": "CL",
+        "name": "Chile"
+      },
+      "address_line": "XXXXXXX",
+      "types": [
+        "shipping"
+      ],
+      "scoring": 1,
+      "agency": {
+        "carrier_id": null,
+        "phone": null,
+        "agency_id": null,
+        "description": null,
+        "type": null,
+        "open_hours": null
+      },
+      "city": {
+        "id": "TUxDQ9FV0WU0MmM2",
+        "name": "Ñuñoa"
+      },
+      "geolocation_type": "ROOFTOP",
+      "latitude": 0,
+      "address_id": 1369910006,
+      "municipality": {
+        "id": null,
+        "name": null
+      },
+      "location_id": 36220077,
+      "street_name": "XXXXXXX",
+      "zip_code": null,
+      "geolocation_source": "geolocation-visits",
+      "node": null,
+      "intersection": null,
+      "street_number": "XXXXXXX",
+      "comment": "XXXXXXX",
+      "state": {
+        "id": "CL-RM",
+        "name": "RM (Metropolitana)"
+      },
+      "neighborhood": {
+        "id": null,
+        "name": "Ñuñoa"
+      },
+      "geolocation_last_updated": "2024-05-15T16:01:18.277Z",
+      "longitude": 0
+    },
+    "type": "selling_address",
+    "sender_id": 680587173,
+    "snapshot": {
+      "id": "b3JpZ2luX3NlbGxpbmdfYWRkcmVzcw",
+      "version": 44882561132
+    }
+  },
+  "destination": {
+    "comments": null,
+    "receiver_id": 1522579078,
+    "receiver_name": "Magdalena María Idalsoaga Ferrer",
+    "shipping_address": {
+      "country": {
+        "id": "CL",
+        "name": "Chile"
+      },
+      "address_line": "Bioparqu SN",
+      "types": [
+        "default_buying_address"
+      ],
+      "scoring": null,
+      "agency": {
+        "carrier_id": null,
+        "phone": null,
+        "agency_id": null,
+        "description": null,
+        "type": null,
+        "open_hours": null
+      },
+      "city": {
+        "id": "TUxDQ0JVSTc4MWEw",
+        "name": "Buin"
+      },
+      "geolocation_type": "APPROXIMATE",
+      "latitude": -33.716204,
+      "address_id": 1482473996,
+      "municipality": {
+        "id": null,
+        "name": null
+      },
+      "location_id": null,
+      "street_name": "Bioparqu",
+      "zip_code": null,
+      "geolocation_source": "map-verified",
+      "delivery_preference": "business",
+      "node": null,
+      "intersection": null,
+      "street_number": "SN",
+      "comment": null,
+      "state": {
+        "id": "CL-RM",
+        "name": "RM (Metropolitana)"
+      },
+      "neighborhood": {
+        "id": null,
+        "name": "Buin"
+      },
+      "geolocation_last_updated": "2025-05-18T19:35:53.214Z",
+      "longitude": -70.729017
+    },
+    "type": "buying_address",
+    "receiver_phone": "XXXXXXX",
+    "snapshot": {
+      "id": "ZGVzdGluYXRpb25fYnV5aW5nX2FkZHJlc3M",
+      "version": 44882561132
+    }
+  },
+  "source": {
+    "site_id": "MLC",
+    "market_place": "MELI",
+    "customer_id": null,
+    "application_id": null
+  },
+  "tags": [],
+  "declared_value": 37765,
+  "logistic": {
+    "mode": "me2",
+    "type": "xd_drop_off",
+    "direction": "forward"
+  },
+  "sibling": {
+    "reason": null,
+    "sibling_id": null,
+    "description": null,
+    "source": null,
+    "date_created": null,
+    "last_updated": null
+  },
+  "priority_class": {
+    "id": null
+  },
+  "lead_time": {
+    "processing_time": null,
+    "cost": 0,
+    "estimated_schedule_limit": {
+      "date": null
+    },
+    "cost_type": "free",
+    "estimated_delivery_final": {
+      "date": "2025-05-20T00:00:00.000-04:00",
+      "offset": 480
+    },
+    "buffering": {
+      "date": null
+    },
+    "pickup_promise": {
+      "from": null,
+      "to": null
+    },
+    "list_cost": 3150,
+    "estimated_delivery_limit": {
+      "date": "2025-05-20T00:00:00.000-04:00",
+      "offset": 72
+    },
+    "priority_class": {
+      "id": null
+    },
+    "delivery_promise": "estimated",
+    "shipping_method": {
+      "name": "Prioritario a domicilio",
+      "deliver_to": "address",
+      "id": 508546,
+      "type": "two_days"
+    },
+    "delivery_type": "estimated",
+    "service_id": 153891,
+    "estimated_delivery_time": {
+      "date": "2025-05-20T00:00:00.000-04:00",
+      "pay_before": "2025-05-19T00:00:00.000-04:00",
+      "schedule": null,
+      "unit": "hour",
+      "offset": {
+        "date": null,
+        "shipping": null
+      },
+      "shipping": 24,
+      "time_frame": {
+        "from": null,
+        "to": null
+      },
+      "handling": 0,
+      "type": "known"
+    },
+    "option_id": 3403574364,
+    "estimated_delivery_extended": {
+      "date": "2025-05-20T00:00:00.000-04:00",
+      "offset": 72
+    },
+    "currency_id": "CLP"
+  },
+  "external_reference": "2000007913919057",
+  "tracking_number": "MEL44882561132FMDOF01",
+  "id": 44882561132,
+  "tracking_method": "Bluexpress Prioritario sucursal a puerta",
+  "quotation": null,
+  "status": "ready_to_ship",
+  "dimensions": {
+    "height": 18,
+    "width": 21,
+    "length": 27,
+    "weight": 684
+  }
+}
