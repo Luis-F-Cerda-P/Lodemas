@@ -2,8 +2,8 @@
 
 one:
   user: one
-  rut: MyString
-  password: MyString
+  rut: 256671565
+  password: 15321532
 
 two:
   user: two

@@ -2,12 +2,12 @@
 
 one:
   meli_account: one
-  access_token: MyString
+  access_token: APP_USR-7274299285983142-051821-dca1171f6d42652bcd906a3f2f92ca88-680587173
   refresh_token: MyString
-  expires_at: 2025-04-13 00:31:32
+  expires_at: <%= Time.current + 6.hours %>
 
 two:
   meli_account: two
   access_token: MyString
   refresh_token: MyString
-  expires_at: 2025-04-13 00:31:32
+  expires_at: <%= Time.current + 6.hours %>

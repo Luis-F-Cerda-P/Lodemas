@@ -2,12 +2,12 @@
 
 one:
   user: one
-  mercadolibre_identifier: 1
+  mercadolibre_identifier: 680587173
   nickname: MyString
   site_code: MyString
 
 two:
   user: two
-  mercadolibre_identifier: 1
+  mercadolibre_identifier: 2
   nickname: MyString
   site_code: MyString

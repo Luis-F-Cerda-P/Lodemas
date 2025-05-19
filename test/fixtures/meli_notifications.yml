@@ -6,8 +6,8 @@ one:
   topic: MyString
   application_id: 1
   attempts: 1
-  sent: 2025-05-03 22:32:38
-  received: 2025-05-03 22:32:38
+  received: <%= Time.current - 1.minutes %>
+  sent: <%= Time.current - 2.minutes %>
   user: one
 
 two:
@@ -16,6 +16,16 @@ two:
   topic: MyString
   application_id: 1
   attempts: 1
-  sent: 2025-05-03 22:32:38
-  received: 2025-05-03 22:32:38
+  received: <%= Time.current - 3.minutes %>
+  sent: <%= Time.current - 4.minutes %>
   user: two
+
+three: 
+  resource: orders/2000011534803276
+  meli_user_id: 680587173
+  topic: orders_v2
+  application_id: 1
+  attempts: 1
+  received: <%= Time.current - 5.minutes %>
+  sent: <%= Time.current - 6.minutes %>
+  user: one
