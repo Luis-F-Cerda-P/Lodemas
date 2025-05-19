@@ -22,7 +22,6 @@ class OrdersTest < ApplicationSystemTestCase
     fill_in "Source channel", with: @order.source_channel
     fill_in "Human readable", with: @order.human_readable_id
     fill_in "Pack", with: @order.pack_id
-    fill_in "Sale channel", with: @order.sale_channel_id
     fill_in "Status", with: @order.status
     fill_in "User", with: @order.user_id
     click_on "Create Order"
@@ -38,7 +37,6 @@ class OrdersTest < ApplicationSystemTestCase
     fill_in "Source channel", with: @order.source_channel
     fill_in "Human readable", with: @order.human_readable_id
     fill_in "Pack", with: @order.pack_id
-    fill_in "Sale channel", with: @order.sale_channel_id
     fill_in "Status", with: @order.status
     fill_in "User", with: @order.user_id
     click_on "Update Order"

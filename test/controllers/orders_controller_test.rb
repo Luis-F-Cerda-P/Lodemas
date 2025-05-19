@@ -19,7 +19,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create order" do
     assert_difference("Order.count") do
-      post orders_url, params: { order: { source_channel: @order.source_channel, human_readable_id: @order.human_readable_id, pack_id: @order.pack_id, sale_channel_id: @order.sale_channel_id, status: @order.status, user_id: @order.user_id } }
+      post orders_url, params: { order: { source_channel: @order.source_channel, human_readable_id: @order.human_readable_id, pack_id: @order.pack_id, status: @order.status, user_id: @order.user_id } }
     end
 
     assert_redirected_to order_url(Order.last)
@@ -36,7 +36,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update order" do
-    patch order_url(@order), params: { order: { source_channel: @order.source_channel, human_readable_id: @order.human_readable_id, pack_id: @order.pack_id, sale_channel_id: @order.sale_channel_id, status: @order.status, user_id: @order.user_id } }
+    patch order_url(@order), params: { order: { source_channel: @order.source_channel, human_readable_id: @order.human_readable_id, pack_id: @order.pack_id, status: @order.status, user_id: @order.user_id } }
     assert_redirected_to order_url(@order)
   end
 
