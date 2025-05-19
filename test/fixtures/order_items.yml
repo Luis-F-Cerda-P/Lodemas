@@ -5,9 +5,25 @@ one:
   item_id: MyString
   seller_sku: MyString
   quantity: 1
+  sale_channel_id: 2000011533276150
 
 two:
   order: two
   item_id: MyString
   seller_sku: MyString
   quantity: 1
+  sale_channel_id: 2000011554715378
+
+three: 
+  order: three 
+  item_id: doesnt matter right now
+  seller_sku: doesnt matter right now
+  quantity: 1
+  sale_channel_id: 2000011533276150
+
+four: 
+  order: three 
+  item_id: doesnt matter right now
+  seller_sku: doesnt matter right now
+  quantity: 1
+  sale_channel_id: 2000011533274188
