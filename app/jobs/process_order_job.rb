@@ -2,41 +2,67 @@ class ProcessOrderJob < ApplicationJob
   queue_as :default
 
   def perform(json_string, user_id)
-    payload = JSON.parse(json_string)
-    user = User.find(user_id)
+    ActiveRecord::Base.transaction do
+      order_payload = JSON.parse(json_string)
+      item_payload = order_payload["order_items"][0]
+      user = User.find(user_id)
+      # Derive IDs
+      pack_id = order_payload["pack_id"]
+      sale_channel_id = order_payload["id"]
+      human_readable_id = pack_id || sale_channel_id
 
-    # Derive IDs
-    pack_id = payload["pack_id"]
-    sale_channel_id = payload["id"]
-    human_readable_id = pack_id || sale_channel_id
+      order = Order.find_or_initialize_by(human_readable_id: human_readable_id)
+      order.expected_item_count = order.expected_item_count || 1
 
-    order = Order.find_or_initialize_by(human_readable_id: human_readable_id)
-    order.assign_attributes(
-      user: user,
-      pack_id: pack_id,
-      sale_channel_id: sale_channel_id,
-      source_channel: :mercadolibre
-    )
-    order.save!
+      items = order.order_items
 
-    payload["order_items"].each do |item_data|
-    item = item_data["item"]
-      OrderItem.find_or_create_by!(
-        order: order,
-        item_id: item["id"]
-      ) do |order_item|
-        order_item.seller_sku = item["seller_sku"]
-        order_item.quantity = item_data["quantity"]
+      is_existing_order = !order.new_record?
+      needs_more_items  = order.expected_item_count > items.count
+      is_new_order_item = !items.any? { |item| item.sale_channel_id == sale_channel_id }
+
+
+
+      if !is_existing_order && pack_id
+        client = MeliApiClient.new(user.meli_account)
+        pack_data = client.get("packs/#{pack_id}")
+        order.expected_item_count = pack_data["orders"].size
       end
-    end
 
+      if !is_existing_order
+        order.assign_attributes(
+          user: user,
+          pack_id: pack_id,
+          source_channel: :mercadolibre,
+          status: order_payload["status"],
+        )
 
-    # Create or update shipment
-    shipping_id = payload.dig("shipping", "id")
-    if shipping_id
-      shipment = Shipment.find_or_initialize_by(order: order)
-      shipment.meli_id = shipping_id
-      shipment.save!
+        order.save!
+
+        OrderItem.create!(
+          order: order,
+          item_id: item_payload["item"]["id"],
+          sale_channel_id: sale_channel_id,
+          seller_sku: item_payload["item"]["seller_sku"],
+          quantity: item_payload["quantity"],
+          billable_amount: order_payload["total_amount"],
+          )
+
+        shipment = Shipment.create!(
+          order: order,
+          meli_id: order_payload.dig("shipping", "id")
+        )
+
+        ProcessShipmentJob.perform_later(shipment)
+      elsif is_existing_order && needs_more_items && is_new_order_item
+        OrderItem.create!(
+          order: order,
+          item_id: item_payload["item"]["id"],
+          sale_channel_id: sale_channel_id,
+          seller_sku: item_payload["item"]["seller_sku"],
+          quantity: item_payload["quantity"],
+          billable_amount: order_payload["total_amount"],
+        )
+      end
     end
   end
 end
