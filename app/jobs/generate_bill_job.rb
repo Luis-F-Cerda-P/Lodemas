@@ -13,6 +13,8 @@ class GenerateBillJob < ApplicationJob
       filename: "boleta_order_#{order.human_readable_id}.pdf",
       content_type: "application/pdf"
     )
+
+    SendBillToMeliJob.perform_later(order)
   ensure
     FileUtils.rm_rf(download_dir)
   end
