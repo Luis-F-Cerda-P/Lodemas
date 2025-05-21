@@ -32,33 +32,38 @@ class BillGenerator
 
     options = Selenium::WebDriver::Firefox::Options.new
     options.profile = profile
-    # options.add_argument('--headless') # Enable for prod
+    options.add_argument("--headless")
+    options.log_level = :trace
 
     @driver = Selenium::WebDriver.for :firefox, options: options
-    @wait = Selenium::WebDriver::Wait.new(timeout: 20)
+    @wait = Selenium::WebDriver::Wait.new(timeout: 200)
   end
 
   def perform_steps
     @driver.get("https://eboleta.sii.cl/")
+    @driver.manage.window.resize_to(1494, 692)
 
     # Wait and login
     wait_until { @driver.find_element(name: "rut").displayed? }
-    rut = @order.user.tax_accounts.first.rut
-    password = @order.user.tax_accounts.first.password
+    tax_account = @order.user.tax_accounts.first
+    rut = tax_account.rut
+    password = tax_account.password
 
     @driver.find_element(name: "rut").send_keys(rut)
     @driver.find_element(id: "inputPass").send_keys(password)
 
+    wait_until { @driver.find_elements(css: ".transparencia").empty? }
     sleep 3
     @driver.find_element(id: "bt_ingresar").click
 
     # Wait for overlay to clear
+    wait_until { @driver.find_element(css: ".v-overlay__scrim").displayed? }
+    sleep 3
     wait_until { @driver.find_elements(css: ".v-overlay__scrim").none?(&:displayed?) }
+    sleep 5
 
-    sleep 2
     dropdown = wait_until { el = @driver.find_element(css: ".v-select__selections"); el if el.displayed? && el.enabled? }
     sleep 5
-    dropdown.click
     dropdown.click
     sleep 3
 
@@ -69,8 +74,10 @@ class BillGenerator
     # Simulate numeric pad entry
     simulate_digit_entry(@order.billable_amount.to_s) # You may replace this with dynamic logic
 
+    sleep 5
     emitir_buttons = @driver.find_elements(css: "button.v-btn.success")
-    first_emitir = emitir_buttons.find { |b| b.text.strip == "EMITIR" && b.displayed? }
+    first_emitir = emitir_buttons.find { |b| b.text.strip == "EMITIR" && b.displayed? && b.enabled? }
+    sleep 3
     first_emitir.click
 
     second_emitir = @wait.until do
@@ -78,14 +85,17 @@ class BillGenerator
       emitir_buttons.find { |b| b.text.strip == "EMITIR" && b.displayed? && b != first_emitir }
     end
 
+    sleep 3
+
     second_emitir.click
 
-    sleep 2
+    sleep 3
 
     descargar_link = @wait.until do
       @driver.find_elements(css: "a.v-btn.success").find { |link| link.text.strip.upcase.include?("DESCARGAR") }
     end
 
+    sleep 3
     descargar_link.click
 
     wait_for_download_to_finish

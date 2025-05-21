@@ -1,5 +1,6 @@
 class GenerateBillJob < ApplicationJob
   queue_as :default
+  limits_concurrency to: 1, key: ->(_) { "singleton" }, duration: 5.minutes
 
   def perform(order)
     order_id = order.id
