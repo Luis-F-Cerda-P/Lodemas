@@ -39,6 +39,40 @@ class MeliApiClient
     JSON.parse(response.body)
   end
 
+  def post_file(path, file_path:, file_param_name:, additional_params: {})
+    sleep(0.2)
+    uri = URI.join(BASE_URL, path)
+
+    # Create a new multipart request
+    request = Net::HTTP::Post.new(uri)
+    request["Authorization"] = "Bearer #{@auth_token.access_token}"
+
+    # Create form data array
+    form_data = [ [ file_param_name, File.open(file_path) ] ]
+
+    # Add any additional parameters to the form data
+    additional_params.each do |key, value|
+      form_data << [ key.to_s, value.to_s ]
+    end
+
+    # Set the form data on the request
+    request.set_form(form_data, "multipart/form-data")
+
+    # Create HTTP connection
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    # Make the request
+    response = http.request(request)
+
+    unless response.is_a?(Net::HTTPSuccess)
+      Rails.logger.error("Meli API Error: #{response.code} #{response.body}")
+      raise "Meli API Error: #{response.code}"
+    end
+
+    JSON.parse(response.body)
+  end
+
   private
 
   def refresh_token_if_expired!
