@@ -14,9 +14,29 @@ FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 # Rails app lives here
 WORKDIR /rails
 
-# Install base packages
+# Install base packages and dependencies needed by Firefox
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
+    apt-get install --no-install-recommends -y curl \
+    libjemalloc2 libvips sqlite3 \
+    libgtk-3-0 \
+    libdbus-glib-1-2 \
+    libasound2 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libxss1 \
+    libdrm2 \
+    libxfixes3 \
+    libxtst6 \
+    libpci3 \
+    libwayland-client0 \
+    libwayland-cursor0 \
+    libwayland-egl1 && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment

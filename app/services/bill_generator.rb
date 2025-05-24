@@ -24,26 +24,32 @@ class BillGenerator
   def setup_driver
     profile = Selenium::WebDriver::Firefox::Profile.new
     profile["browser.download.folderList"] = 2
-    profile["permissions.default.geo"] = 2
-    profile["browser.download.dir"] = @download_dir.to_s
+    profile["browser.download.dir"] = @download_dir
     profile["browser.helperApps.neverAsk.saveToDisk"] = "application/pdf"
     profile["pdfjs.disabled"] = true
+    profile["permissions.default.geo"] = 2
+    profile["permissions.default.desktop-notification"] = 2
 
+    options = Selenium::WebDriver::Firefox::Options.new(profile: profile)
 
-    options = Selenium::WebDriver::Firefox::Options.new
-    options.profile = profile
-    options.add_argument("--headless")
-    options.log_level = :trace
+    options.browser_version = "esr"
+    options.args << "-headless"
+    options.args << "--window-size=1920,1080"
+    options.args << "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.7103.113 Safari/537.36"
+    options.args << "--no-sandbox"
+    options.args << "--disable-dev-shm-usage"
+    options.args << "--disable-gpu"
+    options.args << "--disable-notifications"
 
-    @driver = Selenium::WebDriver.for :firefox, options: options
+    @driver = Selenium::WebDriver.for(:firefox, options: options)
     @wait = Selenium::WebDriver::Wait.new(timeout: 200)
   end
 
-  def perform_steps
-    @driver.get("https://eboleta.sii.cl/")
-    @driver.manage.window.resize_to(1494, 692)
 
-    # Wait and login
+  def perform_steps
+    @driver.navigate.to("https://eboleta.sii.cl/")
+
+
     wait_until { @driver.find_element(name: "rut").displayed? }
     tax_account = @order.user.tax_accounts.first
     rut = tax_account.rut
@@ -56,7 +62,7 @@ class BillGenerator
     sleep 3
     @driver.find_element(id: "bt_ingresar").click
 
-    # Wait for overlay to clear
+
     wait_until { @driver.find_element(css: ".v-overlay__scrim").displayed? }
     sleep 3
     wait_until { @driver.find_elements(css: ".v-overlay__scrim").none?(&:displayed?) }
@@ -67,11 +73,11 @@ class BillGenerator
     dropdown.click
     sleep 3
 
-    # Select company
+
     item = @driver.find_element(:xpath, "//*[contains(text(), '77.268.185-2 PETPORIUM SPA')]")
     item.click
 
-    # Simulate numeric pad entry
+
     simulate_digit_entry(@order.billable_amount.to_s) # You may replace this with dynamic logic
 
     sleep 5

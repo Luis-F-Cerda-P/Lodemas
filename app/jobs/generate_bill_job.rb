@@ -4,7 +4,7 @@ class GenerateBillJob < ApplicationJob
 
   def perform(order)
     order_id = order.id
-    download_dir = Rails.root.join("tmp", "bills", "order_#{order_id}")
+    download_dir = Rails.root.join("tmp", "bills", "order_#{order_id}").to_s
 
     pdf_path = BillGenerator.new(order: order, download_dir: download_dir).generate!
 
