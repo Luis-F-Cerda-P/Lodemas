@@ -16,6 +16,7 @@ class ProcessShipmentJobTest < ActiveJob::TestCase
 
     mock_client.expect :get, mock_shipment_response, [ "shipments/#{shipment.meli_id}",  { optional_headers: { "x-format-new": true } } ]
     mock_client.expect :get, mock_shipment_sla_response, [ "shipments/#{shipment.meli_id}/sla" ]
+    mock_client.expect :get, mock_shipment_response, [ "shipments/#{shipment.meli_id}",  { optional_headers: { "x-format-new": true } } ]
     mock_client.expect :get, mock_shipment_label, [ "shipment_labels?shipment_ids=#{shipment.meli_id}&response_type=pdf",  { expect_binary: true } ]
 
     MeliApiClient.stub :new, mock_client do
