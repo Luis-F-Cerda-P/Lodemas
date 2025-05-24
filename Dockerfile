@@ -14,28 +14,37 @@ FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 # Rails app lives here
 WORKDIR /rails
 
-# Install base packages and dependencies needed by Firefox
+# Install base packages and dependencies needed by Chrome
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl \
-    libjemalloc2 libvips sqlite3 \
-    libgtk-3-0 \
-    libdbus-glib-1-2 \
-    libasound2 \
-    libx11-xcb1 \
+    apt-get install --no-install-recommends -y \
+    curl \
+    # Core Chrome dependencies
+    libatk-bridge2.0-0 \
+    libdrm2 \
     libxcomposite1 \
     libxdamage1 \
     libxrandr2 \
     libgbm1 \
-    libnss3 \
-    libatk-bridge2.0-0 \
     libxss1 \
-    libdrm2 \
-    libxfixes3 \
+    libasound2 \
+    libatspi2.0-0 \
+    libgtk-3-0 \
+    libgdk-pixbuf2.0-0 \
+    # Missing critical Chrome dependencies
+    libnss3 \
+    libnspr4 \
+    libx11-xcb1 \
+    libxcursor1 \
+    libxi6 \
     libxtst6 \
-    libpci3 \
-    libwayland-client0 \
-    libwayland-cursor0 \
-    libwayland-egl1 && \
+    libxshmfence1 \
+    libglu1-mesa \
+    fonts-liberation \
+    libappindicator3-1 \
+    # Additional dependencies that Chrome often needs
+    ca-certificates \
+    fontconfig \
+    && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
