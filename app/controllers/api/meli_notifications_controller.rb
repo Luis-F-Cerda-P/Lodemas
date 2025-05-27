@@ -4,7 +4,7 @@ class Api::MeliNotificationsController < ActionController::Metal
     18.215.140.160
     18.213.114.129
     18.206.34.84
-    181.42.191.217
+    ::1
   ].freeze
 
   def create
