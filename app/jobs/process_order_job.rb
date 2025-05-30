@@ -52,7 +52,7 @@ class ProcessOrderJob < ApplicationJob
           meli_id: order_payload.dig("shipping", "id")
         )
 
-        ProcessShipmentJob.perform_later(shipment)
+        ProcessShipmentJob.set(wait: 3.minutes).perform_later(shipment)
       elsif is_existing_order && needs_more_items && is_new_order_item
         OrderItem.create!(
           order: order,
