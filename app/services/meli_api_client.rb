@@ -30,8 +30,9 @@ class MeliApiClient
     response = http.request(request)
 
     unless response.is_a?(Net::HTTPSuccess)
-      Rails.logger.error("Meli API Error: #{response.code} #{response.body}")
-      raise "Meli API Error: #{response.code}"
+      error_message = "Meli API Error: #{response.code}"
+      Rails.logger.error("#{error_message} #{response.body}")
+      raise MeliApiError.new(error_message, response.code.to_i, response.body)
     end
 
     return response.body if options[:expect_binary]

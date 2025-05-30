@@ -14,7 +14,7 @@ class GenerateBillJob < ApplicationJob
   def perform(order)
     raise OrderNotReady unless order.ready_for_billing?
     raise OrderHasBeenCancelled if order.has_been_cancelled
-    raise OrderHasBeenCancelled if order.already_billed?
+    raise AlreadyBilled if order.already_billed?
 
     begin
       # Instanciar el SiiApiClient

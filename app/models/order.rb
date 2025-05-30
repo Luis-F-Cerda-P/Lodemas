@@ -28,9 +28,17 @@ class Order < ApplicationRecord
   def already_billed?
     client = MeliApiClient.new(self.user.meli_account)
     resource = "/packs/#{self.human_readable_id}/fiscal_documents"
-    response = client.get(resource)
 
-    response["fiscal_documents"].size == 1
+    begin
+      response = client.get(resource)
+      response["fiscal_documents"].size == 1
+    rescue MeliApiError => e
+      if e.status_code == 404
+        false  # 404 means not billed yet
+      else
+        raise e  # Re-raise other API errors
+      end
+    end
   end
 
   private
