@@ -11,7 +11,7 @@ class GetShipmentLabelJob < ApplicationJob
     client = MeliApiClient.new(shipment.order.user.meli_account)
     shipment_data = client.get("shipments/#{shipment.meli_id}", { optional_headers: { "x-format-new": true } })
 
-    raise LabelCannotBeDownloadedAnymore if shipment_data["status"] == "delivered" 
+    raise LabelCannotBeDownloadedAnymore if shipment_data["status"] == "delivered"
     raise LabelNotReady unless shipment_data["status"] == "ready_to_print" || shipment_data["status"] == "ready_to_ship"
 
     shipment_label_response = client.get("shipment_labels?shipment_ids=#{shipment.meli_id}&response_type=pdf", { expect_binary: true })

@@ -8,7 +8,7 @@ require "base64"
 
 class SiiApiClient
   # TODO: Convertir los métodos que se refieren a autorización en métodos privados. Deberían estar envueltos en una rutina de autorización o ser responsabilida de cada "set" (token_set, credentia_set) su propia rutina de obtención y refresco.
-  # TODO: El procesamiento de los JWT debe extraerse, porque además del sign-in y refresco los procesa y guarda de la misma forma. 
+  # TODO: El procesamiento de los JWT debe extraerse, porque además del sign-in y refresco los procesa y guarda de la misma forma.
   # TODO: La única diferencia relevante entre los request es su cuerpo, por tanto debería extraerse la creación del request como plantilla y en sign_in y exchange simplemente asignarles el cuerpo correcto.
   BASE_AWS_CONFIG = {
     region: "us-east-1"
@@ -36,7 +36,7 @@ class SiiApiClient
 
     bill_json
   end
-  
+
   def sign_in
     url = URI(SII_SIGN_IN_URL)
 
