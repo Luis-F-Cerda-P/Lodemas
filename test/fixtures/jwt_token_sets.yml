@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  access_token: MyString
+  access_token_expires_at: 2025-05-27 03:59:26
+  refresh_token: MyString
+  refresh_token_expires_at: 2025-05-27 03:59:26
+  aws_token: MyString
+  aws_token_expires_at: 2025-05-27 03:59:26
+  tax_account: one
+
+two:
+  access_token: MyString
+  access_token_expires_at: 2025-05-27 03:59:26
+  refresh_token: MyString
+  refresh_token_expires_at: 2025-05-27 03:59:26
+  aws_token: MyString
+  aws_token_expires_at: 2025-05-27 03:59:26
+  tax_account: two

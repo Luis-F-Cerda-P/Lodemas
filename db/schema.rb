@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_10_181327) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_27_080034) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -47,6 +47,31 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_10_181327) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "aws_credential_sets", force: :cascade do |t|
+    t.string "access_key_id"
+    t.string "secret_access_key"
+    t.string "session_token"
+    t.datetime "expires_at"
+    t.integer "tax_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tax_account_id"], name: "index_aws_credential_sets_on_tax_account_id"
+  end
+
+  create_table "jwt_token_sets", force: :cascade do |t|
+    t.string "access_token"
+    t.datetime "access_token_expires_at"
+    t.string "refresh_token"
+    t.datetime "refresh_token_expires_at"
+    t.string "aws_token"
+    t.datetime "aws_token_expires_at"
+    t.string "identity_id"
+    t.integer "tax_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tax_account_id"], name: "index_jwt_token_sets_on_tax_account_id"
   end
 
   create_table "meli_accounts", force: :cascade do |t|
@@ -165,6 +190,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_10_181327) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "aws_credential_sets", "tax_accounts"
+  add_foreign_key "jwt_token_sets", "tax_accounts"
   add_foreign_key "meli_accounts", "users"
   add_foreign_key "meli_auth_tokens", "meli_accounts"
   add_foreign_key "meli_notifications", "users"
