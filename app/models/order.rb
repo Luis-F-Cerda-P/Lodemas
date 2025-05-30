@@ -8,7 +8,6 @@ class Order < ApplicationRecord
   enum :source_channel, { mercadolibre: 0 }
 
   def run_ready_for_billing_check!
-    # you can run your logic here or trigger a job
     if ready_for_billing?
       calculate_billable_amount
       GenerateBillJob.perform_later(self)
@@ -22,10 +21,33 @@ class Order < ApplicationRecord
       !bill.attached?
   end
 
+  def has_been_cancelled
+    self.status == "cancelled" || update_and_check_status
+  end
+
+  def already_billed?
+    client = MeliApiClient.new(self.user.meli_account)
+    resource = "/packs/#{self.human_readable_id}/fiscal_documents"
+    response = client.get(resource)
+
+    response["fiscal_documents"].size == 1
+  end
+
   private
 
   def calculate_billable_amount
     total = order_items.sum(:billable_amount) + shipment.billable_amount
     update!(billable_amount: total)
+  end
+
+  def update_and_check_status
+    client = MeliApiClient.new(self.user.meli_account)
+    resource = self.pack_id? ? "/packs/" : "/orders/"
+    response = client.get(resource + self.human_readable_id)
+
+    latest_status = response["status"]
+    self.update!(status: latest_status)
+
+    latest_status == "cancelled"
   end
 end
