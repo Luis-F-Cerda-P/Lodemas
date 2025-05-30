@@ -344,7 +344,7 @@ class SiiApiClient
   end
 
   def get_valid_jwt_token_set
-    @tax_account.jwt_token_set unless @tax_account.jwt_token_set.refresh_token_expired?
+    return @tax_account.jwt_token_set unless @tax_account.jwt_token_set&.refresh_token_expired?
 
     refresh_jwt_token_set
 
@@ -352,7 +352,7 @@ class SiiApiClient
   end
 
   def get_valid_aws_credential_set
-    @tax_account.aws_credential_set unless @tax_account.aws_credential_set.expired
+    return @tax_account.aws_credential_set unless @tax_account.aws_credential_set&.expired?
 
     get_valid_jwt_token_set
     exchange_jwt_token_for_credentials
