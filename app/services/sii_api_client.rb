@@ -98,7 +98,7 @@ class SiiApiClient
 
   def refresh_jwt_token_set
     jwt_token_set = @tax_account.jwt_token_set
-    if jwt_token_set.refresh_token_expired? || jwt_token_set.refresh_token.nil?
+    if jwt_token_set.nil? || jwt_token_set.refresh_token.nil? || jwt_token_set.refresh_token_expired?
       sign_in
     else
       url = URI(SII_REFRESH_TOKEN_URL)
@@ -221,26 +221,26 @@ class SiiApiClient
     headers = {
       "host" => BILLING_API_CONFIG[:host],
       "x-amz-date" => amz_date,
-      "x-amz-security-token" => AWS_CONFIG[:session_token]
+      "x-amz-security-token" => @aws_credentials[:session_token]
     }
 
     signed_headers = "host;x-amz-date;x-amz-security-token"
-    canonical_headers = "host:#{BILLING_API_CONFIG[:host]}\nx-amz-date:#{amz_date}\nx-amz-security-token:#{AWS_CONFIG[:session_token]}\n"
+    canonical_headers = "host:#{BILLING_API_CONFIG[:host]}\nx-amz-date:#{amz_date}\nx-amz-security-token:#{@aws_credentials[:session_token]}\n"
 
     canonical_request = "#{method}\n#{BILLING_API_CONFIG[:path]}\n\n#{canonical_headers}\n#{signed_headers}\n#{payload_hash}"
 
     # Create string to sign
     algorithm = "AWS4-HMAC-SHA256"
-    credential_scope = "#{date_stamp}/#{AWS_CONFIG[:region]}/#{BILLING_API_CONFIG[:service]}/aws4_request"
+    credential_scope = "#{date_stamp}/#{@aws_credentials[:region]}/#{BILLING_API_CONFIG[:service]}/aws4_request"
     string_to_sign = "#{algorithm}\n#{amz_date}\n#{credential_scope}\n#{Digest::SHA256.hexdigest(canonical_request)}"
 
     # Calculate signature
-    secret_key = null_signature ? "" : AWS_CONFIG[:secret_access_key]
-    signing_key = get_signature_key(secret_key, date_stamp, AWS_CONFIG[:region], BILLING_API_CONFIG[:service])
+    secret_key = null_signature ? "" : @aws_credentials[:secret_access_key]
+    signing_key = get_signature_key(secret_key, date_stamp, @aws_credentials[:region], BILLING_API_CONFIG[:service])
     signature = OpenSSL::HMAC.hexdigest("SHA256", signing_key, string_to_sign)
 
     # Create authorization header
-    authorization_header = "#{algorithm} Credential=#{AWS_CONFIG[:access_key_id]}/#{credential_scope}, SignedHeaders=#{signed_headers}, Signature=#{signature}"
+    authorization_header = "#{algorithm} Credential=#{@aws_credentials[:access_key_id]}/#{credential_scope}, SignedHeaders=#{signed_headers}, Signature=#{signature}"
 
     {
       url: "https://#{BILLING_API_CONFIG[:host]}#{BILLING_API_CONFIG[:path]}",
@@ -344,19 +344,19 @@ class SiiApiClient
   end
 
   def get_valid_jwt_token_set
-    return @tax_account.jwt_token_set unless @tax_account.jwt_token_set&.refresh_token_expired?
+    return @tax_account.jwt_token_set unless @tax_account.jwt_token_set.nil? || @tax_account.jwt_token_set&.refresh_token_expired?
 
     refresh_jwt_token_set
 
-    @tax_account.jwt_token_set
+    @tax_account.reload.jwt_token_set
   end
 
   def get_valid_aws_credential_set
-    return @tax_account.aws_credential_set unless @tax_account.aws_credential_set&.expired?
+    return @tax_account.aws_credential_set unless @tax_account.aws_credential_set.nil? ||  @tax_account.aws_credential_set&.expired?
 
     get_valid_jwt_token_set
     exchange_jwt_token_for_credentials
 
-    @tax_account.aws_credential_set
+    @tax_account.reload.aws_credential_set
   end
 end
