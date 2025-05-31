@@ -26,7 +26,7 @@ class SiiApiClient
 
   def initialize(tax_account)
     @tax_account = tax_account
-    @aws_credentials = BASE_AWS_CONFIG.merge(get_valid_aws_credential_set.attributes)
+    @aws_credentials = BASE_AWS_CONFIG.merge(get_valid_aws_credential_set.attributes.symbolize_keys)
   end
 
   def generate_bill_by_amount(amount)
