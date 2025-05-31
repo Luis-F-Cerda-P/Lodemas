@@ -344,7 +344,7 @@ class SiiApiClient
   end
 
   def get_valid_jwt_token_set
-    return @tax_account.jwt_token_set unless @tax_account.jwt_token_set.nil? || @tax_account.jwt_token_set&.refresh_token_expired?
+    return @tax_account.jwt_token_set unless @tax_account.jwt_token_set.nil? || @tax_account.jwt_token_set&.aws_token_expired? || @tax_account.jwt_token_set&.refresh_token_expired?
 
     refresh_jwt_token_set
 
